@@ -1,7 +1,9 @@
 package intern_server.shibing.data.po;
 
+import javax.annotation.sql.DataSourceDefinition;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
 
 public class AuthUser implements Serializable {
 
@@ -48,6 +50,8 @@ public class AuthUser implements Serializable {
      */
 
     private String introduction;
+
+    private String authAccount;
 
     public AuthUser(){
 
@@ -118,5 +122,11 @@ public class AuthUser implements Serializable {
     }
 
 
+    public String getAuthAccount() {
+        return authAccount;
+    }
 
+    public void setAuthAccount(String authAccount) {
+        this.authAccount = authAccount;
+    }
 }

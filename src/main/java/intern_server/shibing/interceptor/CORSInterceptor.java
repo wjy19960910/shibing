@@ -1,3 +1,4 @@
+/*
 package intern_server.shibing.interceptor;
 
 import org.springframework.stereotype.Component;
@@ -18,3 +19,4 @@ public class CORSInterceptor extends HandlerInterceptorAdapter {
         return true;
     }
 }
+*/
