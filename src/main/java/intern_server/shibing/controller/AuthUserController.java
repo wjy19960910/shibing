@@ -54,7 +54,6 @@ public class AuthUserController {
     }
 
 
-
     /**
      * 修改用户信息
      * @return
@@ -63,11 +62,15 @@ public class AuthUserController {
         return null;
     }
 
-
+    /**
+     * 获取用户信息
+     * @param token
+     * @return
+     */
     @GetMapping("/getUserInfo/{token}")
     public Map<String,Object> getUserInfo( @PathVariable String token) {
-        System.out.println(token);
-        return null;
+
+        return authUserService.getUserInfo(token);
     }
 
 }

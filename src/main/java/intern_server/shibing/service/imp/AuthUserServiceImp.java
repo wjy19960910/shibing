@@ -22,6 +22,8 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+import static intern_server.common.utils.SessionUtil.getUserSessionInfo;
+
 @Service
 public class AuthUserServiceImp implements AuthUserService {
     @Autowired
@@ -65,6 +67,7 @@ public class AuthUserServiceImp implements AuthUserService {
                   String password=authUser.getPassword();
                   authUser1.setPassword(SecureUtil.des(Constants.KEY).encryptHex(password));
                   authUser1.setCreateTime(LocalDateTime.now());
+
                   authUserDao.insert(authUser1);
               }
           }
@@ -78,11 +81,12 @@ public class AuthUserServiceImp implements AuthUserService {
 
     /**
      * 获取用户信息
-     * @param authUser
+     * @param token
      * @return
      */
     @Override
-    public Map<String, Object> getUserInfo(AuthUserVO authUser) {
+    public Map<String, Object> getUserInfo(String token) {
+        getUserSessionInfo();
         return null;
     }
 }

@@ -9,5 +9,5 @@ public interface AuthUserService {
     AuthUser userLogin(AuthUser authUser);
     Map<String, Object> registerUser(AuthUser authUser);
     Map<String,String> modifyPsd(String socialId,String oldPassword,String newPassword);
-    Map<String,Object> getUserInfo(AuthUserVO authUser);
+    Map<String,Object> getUserInfo(String token);
 }

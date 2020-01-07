@@ -48,6 +48,8 @@ public class SessionUtil {
         AuthUser authUser = null;
         try {
             authUser = JsonUtil.parseObject(JWT.decode(token).getAudience().get(0), AuthUser.class);
+            System.out.println(authUser);
+            System.out.println(authUser);
         } catch (JWTDecodeException j) {
             //TODO
         }
