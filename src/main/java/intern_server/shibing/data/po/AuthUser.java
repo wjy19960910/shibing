@@ -53,6 +53,8 @@ public class AuthUser implements Serializable {
 
     private String authAccount;
 
+    private String avatar;
+
     public AuthUser(){
 
     }
@@ -128,5 +130,13 @@ public class AuthUser implements Serializable {
 
     public void setAuthAccount(String authAccount) {
         this.authAccount = authAccount;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

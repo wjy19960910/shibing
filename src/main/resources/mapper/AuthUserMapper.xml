@@ -6,4 +6,11 @@
         select * from auth_user where social_id=#{socialId} and password=#{password}
     </select>
 
+    <select id="getUserInfo" parameterType="string" resultType="intern_server.shibing.data.po.AuthUser">
+        select * from auth_user where social_id = #{socialId}
+    </select>
+
+    <update id="updateAvatar" parameterType="string">
+        update auth_user set avatar=#{avatar} where social_id = #{socialId}
+    </update>
 </mapper>

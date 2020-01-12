@@ -9,9 +9,12 @@ import intern_server.shibing.utils.JwtUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,15 +28,17 @@ public class AuthUserController {
     /**
      * 登录
      * @param authUser
-     * @param session
+     * @param
      * @return
      */
     @PostMapping("/login")
-    public Map<String,Object> userLogin(@RequestBody AuthUser authUser, HttpSession session){
+    public Map<String,Object> userLogin(@RequestBody AuthUser authUser,HttpServletRequest request){
         Map<String,Object> result = new HashMap<>();
         if(authUser!=null) {
             AuthUser authUser1 = authUserService.userLogin(authUser);
             if (authUser1 != null) {
+                HttpSession session=request.getSession();
+                session.setAttribute("userId",authUser1.getId());
                 result.put("code", 200);
                 result.put("msg", "登录成功");
                 result.put("token", JwtUtil.getToken(authUser1));
@@ -72,5 +77,17 @@ public class AuthUserController {
 
         return authUserService.getUserInfo(token);
     }
+
+    /**
+     *上传用户头像
+     */
+    @PostMapping(value = "/saveImage")
+    public Map<String,Object> saveImage(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
+        String fileName = file.getOriginalFilename();
+      System.out.println(fileName);
+        System.out.println(file);
+        return authUserService.saveImage(file,request);
+    }
+
 
 }

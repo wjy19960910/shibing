@@ -1,4 +1,4 @@
-/*
+
 package intern_server.shibing.interceptor;
 
 import org.springframework.stereotype.Component;
@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+/**
+ * @author Administrator
+ */
 @Component
 public class CORSInterceptor extends HandlerInterceptorAdapter {
     @Override
@@ -19,4 +22,3 @@ public class CORSInterceptor extends HandlerInterceptorAdapter {
         return true;
     }
 }
-*/
