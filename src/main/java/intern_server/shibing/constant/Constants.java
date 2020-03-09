@@ -24,4 +24,6 @@ public class Constants {
             0x00, (byte) 0x00 }; // 24
     public static final String SUCCESS_CODE="0000";
 
+    public static final String NOTICE_TYPE = "noticeType";
+
 }

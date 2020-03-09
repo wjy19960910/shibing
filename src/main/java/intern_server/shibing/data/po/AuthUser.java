@@ -1,10 +1,17 @@
 package intern_server.shibing.data.po;
 
-import javax.annotation.sql.DataSourceDefinition;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-
+/**
+ * @author Administrator
+ */
+@Entity
+@Table( name ="auth_user" )
 public class AuthUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -13,7 +20,8 @@ public class AuthUser implements Serializable {
      * 主键
      */
 
-    private Long id;
+    @Id
+    private String id;
 
     /**
      * 用户名
@@ -55,15 +63,24 @@ public class AuthUser implements Serializable {
 
     private String avatar;
 
+
+    private Integer registerType;
+    private String studentNumber;
+    private String teacherNumber;
+    private String companyNumber;
+
+    @Transient
+    private String roleName;
+
     public AuthUser(){
 
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -138,5 +155,45 @@ public class AuthUser implements Serializable {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public String getStudentNumber() {
+        return studentNumber;
+    }
+
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
+    }
+
+    public String getTeacherNumber() {
+        return teacherNumber;
+    }
+
+    public void setTeacherNumber(String teacherNumber) {
+        this.teacherNumber = teacherNumber;
+    }
+
+    public String getCompanyNumber() {
+        return companyNumber;
+    }
+
+    public void setCompanyNumber(String companyNumber) {
+        this.companyNumber = companyNumber;
+    }
+
+    public Integer getRegisterType() {
+        return registerType;
+    }
+
+    public void setRegisterType(Integer registerType) {
+        this.registerType = registerType;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }

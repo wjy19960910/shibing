@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="intern_server.shibing.dao.StudentDao">
+
+
+    <update id="updateStudentState" parameterType="string">
+        update student_info set state=#{state} where student_number = #{studentNumber}
+    </update>
+    <select id="selectStudentInfoData" resultType="intern_server.shibing.data.po.Student">
+        select t1.*
+        from student_info t1
+        <where>
+            <if test="fuzzy !=null and fuzzy!=''">
+                t1.student_number LIKE concat(concat('%',#{fuzzy}),'%')
+                or t1.student_name LIKE concat(concat('%',#{fuzzy}),'%')
+                or t1.student_class LIKE concat(concat('%',#{fuzzy}),'%')
+                or t1.student_year LIKE concat(concat('%',#{fuzzy}),'%')
+            </if>
+            <if test="teacherNumber !=null and teacherNumber!=''">
+              and t1.teacher_number=#{teacherNumber}
+            </if>
+        </where>
+        order by manager_time
+    </select>
+</mapper>

@@ -39,10 +39,14 @@ public class AuthUserController {
             if (authUser1 != null) {
                 HttpSession session=request.getSession();
                 session.setAttribute("userId",authUser1.getId());
-                result.put("code", 200);
+                result.put("code", "200");
                 result.put("msg", "登录成功");
                 result.put("token", JwtUtil.getToken(authUser1));
                 result.put("level", "success");
+            }else{
+                result.put("code", "9999");
+                result.put("msg", "用户名或密码错误！");
+                result.put("level", "error");
             }
         }
         return result;
@@ -63,8 +67,20 @@ public class AuthUserController {
      * 修改用户信息
      * @return
      */
-    public Map<String,String> modifyUserInfo(){
-        return null;
+    @PutMapping("/updateMineInfo")
+    public Map<String,Object> modifyUserInfo(@RequestBody AuthUser authUser){
+
+        return authUserService.modifyUserInfo(authUser);
+    }
+
+    /**
+     * 修改用户密码
+     * @param authUser
+     * @return
+     */
+    @PutMapping("/modifyPsd")
+    public Map<String,Object> modifyPsd(@RequestBody AuthUser authUser){
+        return authUserService.modifyPsd(authUser);
     }
 
     /**

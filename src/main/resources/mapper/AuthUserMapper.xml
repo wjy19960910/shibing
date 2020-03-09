@@ -13,4 +13,25 @@
     <update id="updateAvatar" parameterType="string">
         update auth_user set avatar=#{avatar} where social_id = #{socialId}
     </update>
+    <update id="updateAuthUserById" parameterType="intern_server.shibing.data.po.AuthUser">
+        UPDATE auth_user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="socialId != null">social_id=#{socialId},</if>
+            <if test="password!=null">password=#{password},</if>
+            <if test="name!=null">name=#{name},</if>
+            <if test="roleId!=null">role_id=#{roleId},</if>
+            <if test="email!=null">email=#{email},</if>
+            <if test="introduction!=null">introduction=#{introduction},</if>
+            <if test="createTime!=null">create_time=#{createTime},</if>
+            <if test="authAccount!=null">auth_account=#{authAccount},</if>
+            <if test="studentNumber!=null">student_number=#{studentNumber},</if>
+            <if test="teacherNumber!=null">teacher_number=#{teacherNumber},</if>
+            <if test="companyNumber!=null">company_number=#{companyNumber},</if>
+            <if test="registerType!=null">register_type=#{registerType},</if>
+            <if test="avatar!=null">avatar=#{avatar},</if>
+        </trim>
+        WHERE id=#{id}
+    </update>
+
+
 </mapper>
