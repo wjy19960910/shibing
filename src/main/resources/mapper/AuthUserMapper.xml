@@ -9,6 +9,22 @@
     <select id="getUserInfo" parameterType="string" resultType="intern_server.shibing.data.po.AuthUser">
         select * from auth_user where social_id = #{socialId}
     </select>
+    <select id="selectUserInfoData" resultType="intern_server.shibing.data.po.AuthUser">
+        select *
+        from auth_user
+        <where>
+            <if test="fuzzy !=null and fuzzy!=''">
+                social_id LIKE concat(concat('%',#{fuzzy}),'%')
+                or name LIKE concat(concat('%',#{fuzzy}),'%')
+                or email LIKE concat(concat('%',#{fuzzy}),'%')
+                or introduction LIKE concat(concat('%',#{fuzzy}),'%')
+                or student_number LIKE concat(concat('%',#{fuzzy}),'%')
+                or teacher_number LIKE concat(concat('%',#{fuzzy}),'%')
+                or company_number LIKE concat(concat('%',#{fuzzy}),'%')
+            </if>
+        </where>
+
+    </select>
 
     <update id="updateAvatar" parameterType="string">
         update auth_user set avatar=#{avatar} where social_id = #{socialId}

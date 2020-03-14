@@ -3,7 +3,9 @@ package intern_server.shibing.data.po;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @Author: wangjingyuan
@@ -18,6 +20,14 @@ public class Teacher implements Serializable {
     private String teacherNumber;
     private String teacherName;
     private String state;
+    private String teacherPhone;
+    private String teacherPosition;
+    private String teacherDepartments;
+    private String manageUser;
+    private Date manageTime;
+
+    @Transient
+    private String fuzzy;
 
     public String getId() {
         return id;
@@ -49,5 +59,53 @@ public class Teacher implements Serializable {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getTeacherPhone() {
+        return teacherPhone;
+    }
+
+    public void setTeacherPhone(String teacherPhone) {
+        this.teacherPhone = teacherPhone;
+    }
+
+    public String getTeacherPosition() {
+        return teacherPosition;
+    }
+
+    public void setTeacherPosition(String teacherPosition) {
+        this.teacherPosition = teacherPosition;
+    }
+
+    public String getTeacherDepartments() {
+        return teacherDepartments;
+    }
+
+    public void setTeacherDepartments(String teacherDepartments) {
+        this.teacherDepartments = teacherDepartments;
+    }
+
+    public String getFuzzy() {
+        return fuzzy;
+    }
+
+    public void setFuzzy(String fuzzy) {
+        this.fuzzy = fuzzy;
+    }
+
+    public String getManageUser() {
+        return manageUser;
+    }
+
+    public void setManageUser(String manageUser) {
+        this.manageUser = manageUser;
+    }
+
+    public Date getManageTime() {
+        return manageTime;
+    }
+
+    public void setManageTime(Date manageTime) {
+        this.manageTime = manageTime;
     }
 }

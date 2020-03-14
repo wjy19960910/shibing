@@ -44,4 +44,9 @@ public class NoticeController {
         return noticeService.removeNoticeInfo(ids);
     }
 
+    @GetMapping("/getNoticeInfoById/{id}")
+    public Map<String,Object> getNoticeInfoById(@PathVariable String id){
+        return noticeService.getNoticeInfoById(id);
+    }
+
 }

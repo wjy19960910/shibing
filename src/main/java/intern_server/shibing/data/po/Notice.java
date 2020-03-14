@@ -36,6 +36,10 @@ public class Notice implements Serializable {
     private  String fuzzy;
     @Transient
     private String name;
+    @Transient
+    private String statusName;
+    @Transient
+    private String noticeTypeName;
 
     public String getId() {
         return id;
@@ -147,5 +151,21 @@ public class Notice implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
+
+    public String getNoticeTypeName() {
+        return noticeTypeName;
+    }
+
+    public void setNoticeTypeName(String noticeTypeName) {
+        this.noticeTypeName = noticeTypeName;
     }
 }

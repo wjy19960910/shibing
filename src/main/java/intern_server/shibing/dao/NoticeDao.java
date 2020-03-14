@@ -18,4 +18,6 @@ public interface NoticeDao extends Mapper<Notice> {
     List<Notice> selectNoticeInfoDataAll(Notice notice);
 
     void deleteNoticeInfoByIds(String[] id);
+
+    Notice selectNoticeInfoById(String id);
 }

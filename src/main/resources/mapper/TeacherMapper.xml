@@ -5,4 +5,21 @@
     <update id="updateTeacherState" parameterType="string">
         update teacher_info set state=#{state} where teacher_number = #{teacherNumber}
     </update>
+    <select id="selectTeacherInfoData" resultType="intern_server.shibing.data.po.Teacher">
+        select *
+        from teacher_info
+        <where>
+            <if test="fuzzy !=null and fuzzy!=''">
+             teacher_number LIKE concat(concat('%',#{fuzzy}),'%')
+                or teacher_name LIKE concat(concat('%',#{fuzzy}),'%')
+                or teacher_phone LIKE concat(concat('%',#{fuzzy}),'%')
+                or teacher_position LIKE concat(concat('%',#{fuzzy}),'%')
+            </if>
+        </where>
+    </select>
+    <select id="selectTeacherInfoById" parameterType="string" resultType="intern_server.shibing.data.po.Teacher">
+           select * from
+        teacher_info
+        where id=#{id}
+    </select>
 </mapper>

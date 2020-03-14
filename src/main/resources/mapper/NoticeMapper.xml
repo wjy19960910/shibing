@@ -37,6 +37,12 @@
                 or notice_content LIKE concat(concat('%',#{fuzzy}),'%')
                 or manage_user LIKE concat(concat('%',#{fuzzy}),'%')
             </if>
+            and status='1'
         </where>
+    </select>
+    <select id="selectNoticeInfoById" parameterType="string" resultType="intern_server.shibing.data.po.Notice">
+        select * from
+        notice_info
+        where id=#{id}
     </select>
 </mapper>

@@ -55,6 +55,25 @@ public class NoticeServiceImp implements NoticeService {
         }
 
         List<Notice> noticeList = noticeDao.selectNoticeInfoData(notice);
+        if(noticeList !=null && noticeList.size()>0){
+            for (Notice notice1:noticeList
+                 ) {
+                if(!StringUtils.isEmpty(notice1.getStatus())){
+                    if("1".equals(notice1.getStatus())){
+                     notice1.setStatusName("正常");
+                    }else {
+                     notice1.setStatusName("关闭");
+                    }
+                }
+                if(!StringUtils.isEmpty(notice1.getNoticeType())){
+                    if("0001".equals(notice1.getNoticeType())){
+                      notice1.setNoticeTypeName("通知");
+                    }else {
+                        notice1.setNoticeTypeName("公告");
+                    }
+                }
+            }
+        }
         return new PageInfo<>(noticeList);
     }
 
@@ -74,6 +93,7 @@ public class NoticeServiceImp implements NoticeService {
         Map<String,Object> map = new HashMap<>();
         notice.setManageDate(new Date());
         notice.setManageUser(notice.getName());
+        notice.setNoticeReading(0);
         notice.setId(UUID.randomUUID().toString());
         noticeDao.insert(notice);
         map.put("code", "200");
@@ -84,7 +104,13 @@ public class NoticeServiceImp implements NoticeService {
 
     @Override
     public Map<String, Object> editNoticeInfo(Notice notice) {
-        return null;
+        Map<String,Object> map = new HashMap<>();
+        notice.setManageDate(new Date());
+        noticeDao.updateByPrimaryKey(notice);
+        map.put("code", "200");
+        map.put("msg", "修改公告成功！");
+        map.put("level", "success");
+        return map;
     }
 
     @Override
@@ -95,6 +121,14 @@ public class NoticeServiceImp implements NoticeService {
         map.put("code", "200");
         map.put("msg", "删除公告成功！");
         map.put("level", "success");
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> getNoticeInfoById(String id) {
+        Map<String,Object> map = new HashMap<>();
+        Notice notice=noticeDao.selectNoticeInfoById(id);
+        map.put("noticeInfo",notice);
         return map;
     }
 }

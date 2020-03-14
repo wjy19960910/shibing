@@ -71,6 +71,8 @@ public class AuthUser implements Serializable {
 
     @Transient
     private String roleName;
+    @Transient
+    private String fuzzy;
 
     public AuthUser(){
 
@@ -195,5 +197,13 @@ public class AuthUser implements Serializable {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public String getFuzzy() {
+        return fuzzy;
+    }
+
+    public void setFuzzy(String fuzzy) {
+        this.fuzzy = fuzzy;
     }
 }

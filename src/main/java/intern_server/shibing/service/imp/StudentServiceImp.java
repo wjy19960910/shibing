@@ -40,6 +40,11 @@ public class StudentServiceImp implements StudentService {
             if(!StringUtils.isEmpty(teacherNumber)){
                 student.setTeacherNumber(teacherNumber);
             }
+            if(!StringUtils.isEmpty(roleName)){
+                if(roleName.equals(RoleEnum.ADMIN.getRoleName())){
+                    student.setTeacherNumber("");
+                }
+            }
             List<Student> studentList=studentDao.selectStudentInfoData(student);
             return new PageInfo<>(studentList);
 

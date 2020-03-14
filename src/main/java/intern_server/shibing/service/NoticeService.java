@@ -19,4 +19,6 @@ public interface NoticeService {
     Map<String, Object> editNoticeInfo(Notice notice);
 
     Map<String, Object> removeNoticeInfo(String[] ids);
+
+    Map<String, Object> getNoticeInfoById(String id);
 }
