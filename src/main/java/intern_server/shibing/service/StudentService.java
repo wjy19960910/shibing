@@ -19,9 +19,21 @@ public interface StudentService {
      */
     PageInfo selectStudentInfoData(Integer page, Integer pageSize, String fuzzy,String roleName,String teacherNumber);
 
-    Map<String, Object> addStudentInfo(Student student);
+    Map<String, Object> addStudentInfo(Student student) throws Exception;
 
     Map<String, Object> updateStudentInfo(Student student);
 
     Map<String, Object> deleteStudentInfo(String ids);
+
+    Map<String, Object> removeStudentInfo(String[] ids);
+
+    Map<String, Object> getStudentInfoById(String id);
+
+    PageInfo selectStudentInfoAll(Integer page, Integer pageSize, String studentName, String studentClass, String studentNumber);
+
+    Map<String, Object> updateStudentState(String id,String teacherNumber);
+
+    Map<String, Object> removeStudentState(String id);
+
+    Map<String, Object> getStudentInfoByNumber(String id);
 }

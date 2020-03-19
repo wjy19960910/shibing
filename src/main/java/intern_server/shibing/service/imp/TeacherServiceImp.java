@@ -2,7 +2,9 @@ package intern_server.shibing.service.imp;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import intern_server.shibing.dao.AuthUserDao;
 import intern_server.shibing.dao.TeacherDao;
+import intern_server.shibing.data.po.AuthUser;
 import intern_server.shibing.data.po.Teacher;
 import intern_server.shibing.service.TeacherService;
 import org.apache.commons.lang3.StringUtils;
@@ -16,6 +18,8 @@ public class TeacherServiceImp implements TeacherService {
 
     @Autowired
     private TeacherDao teacherDao;
+    @Autowired
+    private AuthUserDao authUserDao;
 
     @Override
     public PageInfo fetchTeacherInfoData(Integer page, Integer pageSize, String fuzzy) {
@@ -44,10 +48,28 @@ public class TeacherServiceImp implements TeacherService {
     @Override
     public Map<String, Object> removeTeacherInfo(String[] ids) {
         Map<String,Object> map = new HashMap<>();
-        map.put("code", "200");
-        map.put("msg", "删除教师信息成功！");
-        map.put("level", "success");
-        return null;
+        List<String> teacherName = new ArrayList<>();
+        if(ids.length>0){
+            for(int i=0;i<ids.length;i++){
+               Teacher teacher=teacherDao.selectTeacherInfoById(ids[i]);
+                if(!StringUtils.isEmpty(teacher.getState()) && teacher.getState().contains("1111")){
+                    teacherName.add(teacher.getTeacherName());
+                }
+            }
+            if(teacherName.size()>0 && teacherName!=null){
+                map.put("code", "9999");
+                map.put("msg", String.join(",",teacherName)+"用户已被使用，不可删除");
+                map.put("level", "warning");
+                return map;
+            }else {
+                teacherDao.deleteTeacherInfoByIds(ids);
+                map.put("code", "200");
+                map.put("msg", "删除成功");
+                map.put("level", "success");
+            }
+        }
+
+        return map;
     }
 
     @Override

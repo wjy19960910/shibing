@@ -12,4 +12,8 @@ import java.util.Map;
 public interface AdminService {
 
     PageInfo fetchUserDataInfo(Integer page, Integer pageSize, String fuzzy);
+
+    Map<String, Object> getUserInfo(String id);
+
+    Map<String, Object> removeUserInfo(String id);
 }

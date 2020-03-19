@@ -25,6 +25,9 @@
         </where>
 
     </select>
+    <select id="getUserInfoByTeacherNumber" parameterType="string" resultType="intern_server.shibing.data.po.AuthUser">
+        select * from auth_user where teacher_number-#{id}
+    </select>
 
     <update id="updateAvatar" parameterType="string">
         update auth_user set avatar=#{avatar} where social_id = #{socialId}

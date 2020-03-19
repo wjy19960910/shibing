@@ -21,8 +21,10 @@ public class Student implements Serializable {
     private String studentName;
     private String studentNumber;
     private String studentClass;
+    private String studentEmail;
+    private String studentPhone;
     private String studentYear;
-    private Date manageTime;
+    private Date managerTime;
     private String state;
     private String teacherNumber;
 
@@ -35,6 +37,8 @@ public class Student implements Serializable {
     private String roleName;
     @Transient
     private String findType;
+    @Transient
+    private String stateName;
 
 
     public String getId() {
@@ -69,13 +73,6 @@ public class Student implements Serializable {
         this.studentYear = studentYear;
     }
 
-    public Date getManageTime() {
-        return manageTime;
-    }
-
-    public void setManageTime(Date manageTime) {
-        this.manageTime = manageTime;
-    }
 
     public String getState() {
         return state;
@@ -131,5 +128,37 @@ public class Student implements Serializable {
 
     public void setTeacherNumber(String teacherNumber) {
         this.teacherNumber = teacherNumber;
+    }
+
+    public Date getManagerTime() {
+        return managerTime;
+    }
+
+    public void setManagerTime(Date managerTime) {
+        this.managerTime = managerTime;
+    }
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+    }
+
+    public String getStudentEmail() {
+        return studentEmail;
+    }
+
+    public void setStudentEmail(String studentEmail) {
+        this.studentEmail = studentEmail;
+    }
+
+    public String getStudentPhone() {
+        return studentPhone;
+    }
+
+    public void setStudentPhone(String studentPhone) {
+        this.studentPhone = studentPhone;
     }
 }

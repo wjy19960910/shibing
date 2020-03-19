@@ -5,6 +5,13 @@
     <update id="updateTeacherState" parameterType="string">
         update teacher_info set state=#{state} where teacher_number = #{teacherNumber}
     </update>
+    <delete id="deleteTeacherInfoByIds">
+        delete from teacher_info where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+
+    </delete>
     <select id="selectTeacherInfoData" resultType="intern_server.shibing.data.po.Teacher">
         select *
         from teacher_info

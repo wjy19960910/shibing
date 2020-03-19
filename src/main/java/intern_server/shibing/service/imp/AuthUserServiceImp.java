@@ -34,10 +34,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import static intern_server.common.utils.SessionUtil.getUserSessionInfo;
 import static javafx.scene.input.KeyCode.L;
@@ -173,8 +170,8 @@ public class AuthUserServiceImp implements AuthUserService {
 
                   String password=authUser.getPassword();
                   authUser1.setPassword(SecureUtil.des(Constants.KEY).encryptHex(password));
-                  authUser1.setCreateTime(LocalDateTime.now());
                   authUser1.setId(UUID.randomUUID().toString());
+                  authUser1.setCreateTime(new Date());
 
                   authUserDao.insert(authUser1);
                   result.put("code", "200");

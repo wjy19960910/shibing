@@ -18,7 +18,7 @@ import java.util.Map;
 public class StudentController {
 
     @Autowired
-    StudentService studentService;
+    private StudentService studentService;
 
     /**
      * 查询全部学生信息
@@ -34,6 +34,13 @@ public class StudentController {
          return studentService.selectStudentInfoData(page,pageSize,fuzzy,roleName,teacherNumber);
     }
 
+    @GetMapping("/fetchStudentInfoAll")
+    public PageInfo fetchStudentInfoAll(@RequestParam(required = false, defaultValue = "1") Integer page, @RequestParam(required = false, defaultValue = "5") Integer pageSize,
+                                        @RequestParam(required = false) String studentName, @RequestParam(required = false) String studentClass,
+                                        @RequestParam(required = false) String studentNumber){
+        return studentService.selectStudentInfoAll(page,pageSize,studentName,studentClass,studentNumber);
+
+    }
     /**
      * 创建学生信息
      * @param student
@@ -41,7 +48,7 @@ public class StudentController {
      */
 
     @PostMapping("/addStudentInfo")
-    public Map<String,Object> addStudentInfo(@RequestBody Student student){
+    public Map<String,Object> addStudentInfo(@RequestBody Student student) throws Exception {
         return studentService.addStudentInfo(student);
     }
 
@@ -54,4 +61,30 @@ public class StudentController {
     public Map<String,Object> deleteStudentInfo(@PathVariable String ids){
         return studentService.deleteStudentInfo(ids);
     }
+
+    @DeleteMapping("/removeStudentInfo/{ids}")
+    public Map<String,Object> removeStudentInfo(@PathVariable String[] ids){
+        return studentService.removeStudentInfo(ids);
+    }
+
+    @GetMapping("/getStudentInfoById/{id}")
+    public Map<String,Object> getStudentInfoById(@PathVariable String id){
+        return studentService.getStudentInfoById(id);
+    }
+
+    @GetMapping("/getStudentInfoByNumber/{id}")
+    public Map<String,Object> getStudentInfoByNumber(@PathVariable String id){
+        return studentService.getStudentInfoByNumber(id);
+    }
+
+    @GetMapping("/updateStudentState/{id}/{teacherNumber}")
+    public Map<String,Object> updateStudentState(@PathVariable String id ,@PathVariable String teacherNumber){
+        return studentService.updateStudentState(id,teacherNumber);
+    }
+
+    @GetMapping("/removeStudentState/{id}")
+    public Map<String,Object> removeStudentState(@PathVariable String id ){
+        return studentService.removeStudentState(id);
+    }
+
 }

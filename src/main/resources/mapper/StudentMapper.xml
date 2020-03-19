@@ -6,6 +6,16 @@
     <update id="updateStudentState" parameterType="string">
         update student_info set state=#{state} where student_number = #{studentNumber}
     </update>
+    <update id="updateStudentStateById" parameterType="string">
+        update student_info set state=#{state},teacher_number=#{teacherNumber} where id = #{id}
+
+    </update>
+    <delete id="deleteStudentInfoByIds" parameterType="string">
+        delete from student_info where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
     <select id="selectStudentInfoData" resultType="intern_server.shibing.data.po.Student">
         select t1.*
         from student_info t1
@@ -21,5 +31,29 @@
             </if>
         </where>
         order by manager_time
+    </select>
+    <select id="selectStudentInfoById" parameterType="string" resultType="intern_server.shibing.data.po.Student">
+        select * from
+        student_info
+        where student_number=#{studentNumber}
+    </select>
+    <select id="selectStudentInfoByKey" parameterType="string" resultType="intern_server.shibing.data.po.Student">
+        select * from
+        student_info
+        where id=#{id}
+    </select>
+    <select id="selectStudentInfoAll" resultType="intern_server.shibing.data.po.Student">
+        select * from student_info
+        where state='1111'
+        <if test="studentName != null and studentName != ''" >
+            AND student_name= #{studentName,jdbcType=VARCHAR}
+        </if>
+        <if test="studentClass != null and studentClass != ''" >
+            AND student_class= #{studentClass,jdbcType=VARCHAR}
+        </if>
+        <if test="studentNumber != null and studentNumber != ''" >
+            AND student_number= #{studentNumber,jdbcType=VARCHAR}
+        </if>
+
     </select>
 </mapper>

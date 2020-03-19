@@ -16,4 +16,6 @@ public interface AuthUserDao extends Mapper<AuthUser> {
     void updateAuthUserById(AuthUser authUser);
 
     List<AuthUser> selectUserInfoData(AuthUser authUser);
+
+    AuthUser getUserInfoByTeacherNumber(@Param("id") String id);
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="intern_server.shibing.dao.InternshipDao">
+    <update id="updateDataStateById">
+           update internship_info set state=#{state} where id = #{id}
+    </update>
+
+
+    <select id="selectDataInfo" resultType="intern_server.shibing.data.po.InternshipInfo">
+          select i.*,
+          s.student_name as studentName,
+          s.student_number as studentNumber,
+          s.student_class as studentClass,
+          s.student_email as studentEmail
+          from
+          internship_info i
+          left join student_info s on s.student_number = i.student_number
+           where i.state !='9999'
+        <if test="studentNumber != null and studentNumber != ''" >
+            AND i.student_number= #{studentNumber,jdbcType=VARCHAR}
+        </if>
+        <if test="teacherNumber != null and teacherNumber != ''" >
+            AND s.teacher_number= #{teacherNumber,jdbcType=VARCHAR}
+        </if>
+        <if test="companyName != null and companyName != ''" >
+            AND i.company_name= #{companyName,jdbcType=VARCHAR}
+        </if>
+        <if test="postalCode != null and postalCode != ''" >
+            AND i.postal_code= #{postalCode,jdbcType=VARCHAR}
+        </if>
+
+    </select>
+</mapper>

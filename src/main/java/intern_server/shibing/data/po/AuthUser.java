@@ -6,6 +6,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author Administrator
@@ -41,7 +42,7 @@ public class AuthUser implements Serializable {
     /**
      * 注册时间
      */
-    private LocalDateTime createTime;
+    private Date createTime;
 
     /**
      * 密码
@@ -73,6 +74,10 @@ public class AuthUser implements Serializable {
     private String roleName;
     @Transient
     private String fuzzy;
+    @Transient
+    private String passwordChange;
+    @Transient
+    private String roleIdName;
 
     public AuthUser(){
 
@@ -108,14 +113,6 @@ public class AuthUser implements Serializable {
 
     public void setRoleId(Long roleId) {
         this.roleId = roleId;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
     }
 
     public String getPassword() {
@@ -205,5 +202,29 @@ public class AuthUser implements Serializable {
 
     public void setFuzzy(String fuzzy) {
         this.fuzzy = fuzzy;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getPasswordChange() {
+        return passwordChange;
+    }
+
+    public void setPasswordChange(String passwordChange) {
+        this.passwordChange = passwordChange;
+    }
+
+    public String getRoleIdName() {
+        return roleIdName;
+    }
+
+    public void setRoleIdName(String roleIdName) {
+        this.roleIdName = roleIdName;
     }
 }

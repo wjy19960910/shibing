@@ -4,6 +4,31 @@
 
 
     <update id="updateCompanyState" parameterType="string">
-        update company_info set state=#{state} where teacher_number = #{teacherNumber}
+        update company_info set state=#{state} where company_number = #{companyNumber}
     </update>
+    <delete id="deleteCompanyInfoByIds" parameterType="string">
+        delete from company_info where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+
+    </delete>
+    <select id="selectCompanyInfo" resultType="intern_server.shibing.data.po.Company">
+        select * from
+        company_info
+        where state !='9999'
+        <if test="companyName != null and companyName != ''" >
+            AND company_name= #{companyName,jdbcType=VARCHAR}
+        </if>
+        <if test="companyPhone != null and companyPhone != ''" >
+            AND company_phone= #{companyPhone,jdbcType=VARCHAR}
+        </if>
+        <if test="companyNumber != null and companyNumber != ''" >
+            AND company_number= #{companyNumber,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <select id="selectCompanyInfoById" parameterType="string" resultType="intern_server.shibing.data.po.Company">
+        select * from company_info
+        where id=#{id}
+    </select>
 </mapper>
