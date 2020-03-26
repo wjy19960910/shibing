@@ -175,6 +175,7 @@ public class AuthUserServiceImp implements AuthUserService {
                   authUser1.setId(UUID.randomUUID().toString());
                   authUser1.setCreateTime(new Date());
                   authUser1.setAvatar("E:/images/1585049512969.jpg");
+                  authUser1.setYesOrNo("NO");
 
                   authUserDao.insert(authUser1);
                   result.put("code", "200");
