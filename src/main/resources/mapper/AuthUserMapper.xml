@@ -48,6 +48,7 @@
             <if test="companyNumber!=null">company_number=#{companyNumber},</if>
             <if test="registerType!=null">register_type=#{registerType},</if>
             <if test="avatar!=null">avatar=#{avatar},</if>
+            <if test="yesOrNo!=null">yes_or_no=#{yesOrNo},</if>
         </trim>
         WHERE id=#{id}
     </update>

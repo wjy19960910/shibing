@@ -23,4 +23,6 @@ public interface StudentDao extends Mapper<Student> {
     List<Student> selectStudentInfoAll(@Param("studentName") String studentName, @Param("studentClass") String studentClass, @Param("studentNumber") String studentNumber);
 
     void updateStudentStateById(@Param("id") String id, @Param("state") String state,@Param("teacherNumber") String teacherNumber);
+
+    List<Student> selectStudentInfoByTeacherNumber(@Param("teacherNumber") String teacherNumber);
 }

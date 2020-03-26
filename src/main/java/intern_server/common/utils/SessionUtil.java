@@ -54,12 +54,11 @@ public class SessionUtil {
         }
         String socialId=null;
         String avatar = null;
-        socialId= JWT.decode(token).getAudience().get(0);
-        avatar=JWT.decode(token).getAudience().get(1);
-        System.out.println(avatar);
+        if(!StringUtils.isEmpty(token)){
+            socialId= JWT.decode(token).getAudience().get(0);
+        }
         UserSessionVO userSessionVO = new UserSessionVO();
         userSessionVO.setSocialId(socialId);
-        userSessionVO.setAvatar(avatar);
         return userSessionVO;
     }
 

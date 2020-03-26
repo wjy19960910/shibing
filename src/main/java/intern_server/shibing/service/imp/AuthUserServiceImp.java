@@ -75,8 +75,8 @@ public class AuthUserServiceImp implements AuthUserService {
     public Map<String, Object> registerUser(AuthUser authUser) {
           Map<String,Object> result = new HashMap<>();
           if(authUser!=null && !StringUtils.isEmpty(authUser.getSocialId())){
-              int count=authUserDao.selectCount(authUser);
-              if(count>0){
+              AuthUser checkUser =authUserDao.getUserInfo(authUser.getSocialId());
+              if(checkUser != null){
                   result.put("code", Constants.ALREADY_EXISTS);
                   result.put("msg", "账号已存在，请重新输入");
                   result.put("level", "error");
@@ -121,6 +121,7 @@ public class AuthUserServiceImp implements AuthUserService {
                           if(teachers.size()>0){
                               if(!teachers.get(0).getState().equals("1111")){
                                   authUser1.setTeacherNumber(authUser.getTeacherNumber());
+                                  authUser1.setName(teachers.get(0).getTeacherName());
                                   teacherDao.updateTeacherState("1111",authUser.getTeacherNumber());
                               }else {
                                   result.put("code", "4444");
@@ -148,7 +149,8 @@ public class AuthUserServiceImp implements AuthUserService {
                           // 1111 代表该账号已被注册
                           if(companyList.size()>0){
                               if(!companyList.get(0).getState().equals("1111")){
-                                  authUser1.setTeacherNumber(authUser.getCompanyNumber());
+                                  authUser1.setCompanyNumber(authUser.getCompanyNumber());
+                                  authUser1.setName(companyList.get(0).getCompanyName());
                                   companyDao.updateCompanyState("1111",authUser.getCompanyNumber());
                               }else {
                                   result.put("code", "4444");
@@ -172,6 +174,7 @@ public class AuthUserServiceImp implements AuthUserService {
                   authUser1.setPassword(SecureUtil.des(Constants.KEY).encryptHex(password));
                   authUser1.setId(UUID.randomUUID().toString());
                   authUser1.setCreateTime(new Date());
+                  authUser1.setAvatar("E:/images/1585049512969.jpg");
 
                   authUserDao.insert(authUser1);
                   result.put("code", "200");

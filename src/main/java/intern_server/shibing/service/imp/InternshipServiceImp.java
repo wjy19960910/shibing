@@ -101,4 +101,12 @@ public class InternshipServiceImp implements InternshipService {
         }
         return map;
     }
+
+    @Override
+    public Map<String, Object> getDataInfoByIdAndNumber( String studentNumber) {
+        Map<String,Object> map = new HashMap<>();
+        List<InternshipInfo> list=internshipDao.selectDataInfoByIdAndNumber(studentNumber);
+        map.put("listInternShip",list);
+        return map;
+    }
 }

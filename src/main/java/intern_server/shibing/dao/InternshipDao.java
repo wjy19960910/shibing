@@ -16,4 +16,6 @@ public interface InternshipDao extends Mapper<InternshipInfo> {
     List<InternshipInfo> selectDataInfo(String companyName, String postalCode, String studentNumber, String teacherNumber);
 
     void updateDataStateById(@Param("id") String id, @Param("state") String state);
+
+    List<InternshipInfo> selectDataInfoByIdAndNumber(String studentNumber);
 }

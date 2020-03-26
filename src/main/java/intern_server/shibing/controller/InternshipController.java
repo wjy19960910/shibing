@@ -49,4 +49,9 @@ public class InternshipController {
         return internshipService.updateDataInfoById(id,updateType);
     }
 
+    @GetMapping("/getDataInfoByIdAndNumber/{studentNumber}")
+    public Map<String,Object> getDataInfoByIdAndNumber(@PathVariable String studentNumber){
+        return internshipService.getDataInfoByIdAndNumber(studentNumber);
+    }
+
 }

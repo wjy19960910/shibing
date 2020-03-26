@@ -29,4 +29,9 @@
         teacher_info
         where id=#{id}
     </select>
+    <select id="selectTeacherInfoByNumber" parameterType="string" resultType="intern_server.shibing.data.po.Teacher">
+            select * from
+        teacher_info
+        where teacher_number=#{teacherNumber}
+    </select>
 </mapper>

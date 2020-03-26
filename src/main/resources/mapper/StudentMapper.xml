@@ -56,4 +56,8 @@
         </if>
 
     </select>
+    <select id="selectStudentInfoByTeacherNumber" parameterType="string" resultType="intern_server.shibing.data.po.Student">
+
+        select * from student_info where teacher_number=#{teacherNumber}
+    </select>
 </mapper>

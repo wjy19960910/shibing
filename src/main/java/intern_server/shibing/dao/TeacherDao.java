@@ -16,4 +16,6 @@ public interface TeacherDao extends Mapper<Teacher> {
     Teacher selectTeacherInfoById(String id);
 
     void deleteTeacherInfoByIds(String[] ids);
+
+    Teacher selectTeacherInfoByNumber(String teacherNumber);
 }

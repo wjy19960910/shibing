@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="intern_server.shibing.dao.ReportDao">
+    <delete id="deleteReportInfoByIds">
+        delete from report_info where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectReportInfo" parameterType="string" resultType="intern_server.shibing.data.po.Report">
+        select r.*,
+        s.student_name as studentName,
+        i.company_name as companyName
+        from
+        report_info r
+        left join student_info s on s.student_number = r.student_number
+        left join internship_info i on i.id = r.internship_id
+
+        where r.report_state !='8888'
+        <if test="studentNumber != null and studentNumber != ''" >
+            AND r.student_number= #{studentNumber,jdbcType=VARCHAR}
+        </if>
+        <if test="teacherNumber != null and teacherNumber != ''" >
+            AND s.teacher_number= #{teacherNumber,jdbcType=VARCHAR}
+        </if>
+        <if test="reportName != null and reportName != ''" >
+            AND r.report_name= #{reportName,jdbcType=VARCHAR}
+        </if>
+        <if test="reportDate != null and reportDate != ''" >
+            AND r.report_date= #{reportDate,jdbcType=VARCHAR}
+        </if>
+        <if test="sort != null and sort != ''" >
+            order by r.report_date desc , r.report_state ${sort}
+        </if>
+    </select>
+    <select id="selectReportById" parameterType="string" resultType="intern_server.shibing.data.po.Report">
+           select * from
+        report_info
+        where id=#{id}
+    </select>
+</mapper>

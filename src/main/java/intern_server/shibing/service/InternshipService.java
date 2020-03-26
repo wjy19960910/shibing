@@ -19,4 +19,6 @@ public interface InternshipService {
     Map<String, Object> updateDataInfo(InternshipInfo internshipInfo);
 
     Map<String, Object> updateDataInfoById(String id, String updateType);
+
+    Map<String, Object> getDataInfoByIdAndNumber( String studentNumber);
 }

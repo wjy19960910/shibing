@@ -70,6 +70,8 @@ public class AuthUser implements Serializable {
     private String teacherNumber;
     private String companyNumber;
 
+    private String yesOrNo;
+
     @Transient
     private String roleName;
     @Transient
@@ -226,5 +228,13 @@ public class AuthUser implements Serializable {
 
     public void setRoleIdName(String roleIdName) {
         this.roleIdName = roleIdName;
+    }
+
+    public String getYesOrNo() {
+        return yesOrNo;
+    }
+
+    public void setYesOrNo(String yesOrNo) {
+        this.yesOrNo = yesOrNo;
     }
 }

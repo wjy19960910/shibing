@@ -30,4 +30,10 @@
         </if>
 
     </select>
+    <select id="selectDataInfoByIdAndNumber" parameterType="string" resultType="intern_server.shibing.data.po.InternshipInfo">
+        select * from
+        internship_info
+        where state !='2222' and student_number=#{studentNumber}
+
+    </select>
 </mapper>
