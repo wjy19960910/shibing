@@ -36,4 +36,7 @@
         where state !='2222' and student_number=#{studentNumber}
 
     </select>
+    <select id="selectInternTime" resultType="intern_server.shibing.data.po.InternshipInfo">
+
+    </select>
 </mapper>

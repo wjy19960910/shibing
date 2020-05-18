@@ -39,7 +39,7 @@ public class CompanyController {
         return companyService.updateCompany(company);
     }
 
-    @DeleteMapping("/removeCompany")
+    @DeleteMapping("/removeCompany/{ids}")
     public Map<String,Object> removeCompany(@PathVariable String[] ids){
         return companyService.removeCompany(ids);
     }

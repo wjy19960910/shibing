@@ -29,6 +29,9 @@ public class Teacher implements Serializable {
     @Transient
     private String fuzzy;
 
+    @Transient
+    private String stateName;
+
     public String getId() {
         return id;
     }
@@ -107,5 +110,13 @@ public class Teacher implements Serializable {
 
     public void setManageTime(Date manageTime) {
         this.manageTime = manageTime;
+    }
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
     }
 }

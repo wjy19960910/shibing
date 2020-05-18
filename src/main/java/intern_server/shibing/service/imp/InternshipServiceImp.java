@@ -56,6 +56,9 @@ public class InternshipServiceImp implements InternshipService {
                     if(i.getState().contains("2222")){
                         i.setStateName("已停用");
                     }
+                    if(i.getState().contains("3333")){
+                        i.setStateName("已驳回");
+                    }
                 }
             }
         }
@@ -98,6 +101,13 @@ public class InternshipServiceImp implements InternshipService {
             map.put("msg", "停用成功");
             map.put("level", "success");
 
+        }
+        if("BACK".equals(updateType)){
+            String state ="3333";
+            internshipDao.updateDataStateById(id,state);
+            map.put("code", "200");
+            map.put("msg", "驳回成功");
+            map.put("level", "success");
         }
         return map;
     }

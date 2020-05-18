@@ -10,6 +10,7 @@ import intern_server.shibing.service.TeacherService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.*;
 
@@ -29,6 +30,17 @@ public class TeacherServiceImp implements TeacherService {
             teacher.setFuzzy(fuzzy);
         }
         List<Teacher> teacherList = teacherDao.selectTeacherInfoData(teacher);
+        if(teacherList.size()>0){
+            for (Teacher teacher1:teacherList
+                 ) {
+                if(teacher1.getState().contains("0000")){
+                    teacher1.setStateName("未注册");
+                }
+                if(teacher1.getState().contains("1111")){
+                    teacher1.setStateName("已注册");
+                }
+            }
+        }
         return new PageInfo<>(teacherList);
     }
 

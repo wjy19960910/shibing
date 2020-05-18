@@ -136,7 +136,10 @@ public class StudentServiceImp implements StudentService {
             for (int i=0;i<ids.length;i++){
                 Student student = studentDao.selectStudentInfoByKey(ids[i]);
                 if(!StringUtils.isEmpty(student.getTeacherNumber())){
-                  deleteName.add(student.getStudentNumber());
+                    if(!StringUtils.isEmpty(student.getState() )&& student.getState().contains("1111")){
+                        deleteName.add(student.getStudentNumber());
+                    }
+
                 }
             }
             if(deleteName.size()>0 && deleteName!=null){
