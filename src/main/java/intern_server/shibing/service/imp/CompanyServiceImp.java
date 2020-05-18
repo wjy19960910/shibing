@@ -68,7 +68,7 @@ public class CompanyServiceImp implements CompanyService {
         if(ids.length>0){
             for (int i=0;i<ids.length;i++){
                 Company company = companyDao.selectCompanyInfoById(ids[i]);
-                if(company.getCompanyNumber().contains("1111")){
+                if(company.getState().contains("1111")){
                     deleteName.add(company.getCompanyName());
                 }
             }
